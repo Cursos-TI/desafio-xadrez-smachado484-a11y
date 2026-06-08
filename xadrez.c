@@ -30,7 +30,7 @@ int main() {
 
   //Declaração de variáveis
   int opcao1, opcao2; //Variáveis para os menus
-  int bispo = 1, rainha = 1; //Variáveis para a movimentação das peças
+  int bispo = 1, rainha = 1, cavalo = 1; //Variáveis para a movimentação das peças
 
     printf("*** XADREZ ***");
     printf("\n");
@@ -53,6 +53,7 @@ int main() {
         printf("1. Torre\n");
         printf("2. Bispo\n");
         printf("3. Rainha\n");
+        printf("4. Cavalo\n");
         printf("\n");
         printf("Digite sua opção: ");
         scanf("%d", &opcao2);
@@ -92,6 +93,22 @@ int main() {
             } while (rainha <= 8);
                 
             break;
+        
+        case 4:
+        //Mover o Cavalo em L
+            printf("Você escolheu o Cavalo! Acompanhe sua movimentação!\n");
+            printf("\n");
+
+            while(cavalo--)
+            {
+                for(int i = 0; i< 2; i++) {
+                    printf("Baixo\n"); //Imprime Baixo duas vezes
+                }
+
+                printf("Esquerda\n"); //Imprime Esquerda uma vez
+            }
+
+            break;
 
         default:
            printf("\n");
@@ -101,15 +118,17 @@ int main() {
     break;
     
     case 2:
-    printf("*** Regras de Movimentação das Peças ***\n");
-    printf("\n");
-    printf("Cada peça se movimenta da seguinte forma:\n");
-    printf("\n");
-    printf("Torre: Move-se em linha reta horizontalmente ou verticalmente.\n");
-    printf("\n");
-    printf("Bispo: Move-se na diagonal.\n");
-    printf("\n");
-    printf("Rainha: Move-se em todas as direções.\n");
+        printf("*** Regras de Movimentação das Peças ***\n");
+        printf("\n");
+        printf("Cada peça se movimenta da seguinte forma:\n");
+        printf("\n");
+        printf("Torre: Move-se em linha reta horizontalmente ou verticalmente.\n");
+        printf("\n");
+        printf("Bispo: Move-se na diagonal.\n");
+        printf("\n");
+        printf("Cavalo: Move-se em L.\n");
+        printf("\n");
+        printf("Rainha: Move-se em todas as direções.\n");
     break;
 
     case 3:
