@@ -4,36 +4,61 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+//funções void para implementar a recursividade na movimentação das peças
+void mover_torre(int casas)
+{
+    if (casas  > 0) {
+        printf("Direita\n"); //Imprime a direção do movimento
+        mover_torre(casas - 1);
+    }
+}
+
+void mover_bispo(int casas)
+{ 
+    if (casas <= 0)
+        return;
+
+    for (int vertical = 0; vertical < 1; vertical++)
+    {
+        printf("Cima, "); //Imprime a direção do movimento
+
+        for (int horizontal = 0; horizontal < 1; horizontal++)
+        {
+            printf("Direita"); //Imprime a direção do movimento
+        }
+        printf("\n");
+    }
+    mover_bispo(casas - 1);
+}
+
+void mover_rainha(int casas)
+{
+    if (casas > 0)
+    {
+        printf("Esquerda\n"); //Imprime a direção do movimento
+        mover_rainha(casas - 1);
+    }
+}
+
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
-
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
-
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
-
   //Declaração de variáveis
   int opcao1, opcao2; //Variáveis para os menus
-  int bispo = 1, rainha = 1, cavalo = 1; //Variáveis para a movimentação das peças
+  int casas = 1; //Variáveis para a movimentação das peças
 
     printf("*** XADREZ ***");
+    //Tabuleiro ilustrativo antes do início do jogo
     printf("\n");
+    printf("    A  B  C  D  E  F  G  H \n");
+    printf("8. |T||C||B||D||R||B||C||T|\n");
+    printf("7. |p||p||p||p||p||p||p||p|\n");
+    for(int j = 6; j >= 3; j--) 
+    {
+    printf("%d. | || || || || || || || |\n", j);
+    }
+    printf("2. |p||p||p||p||p||p||p||p|\n");
+    printf("1. |T||C||B||D||R||B||C||T|\n");
+    printf("\n");
+    
     printf("*** Bem-vindo ao jogo! ***\n");
     printf("\n");
 
@@ -65,9 +90,11 @@ int main() {
             printf("Você escolheu a Torre! Acompanhe sua movimentação!\n");
             printf("\n");
 
-            for (int torre = 0; torre < 5; torre++) {
-                printf("Direita\n"); //Imprime a direção do movimento
-            }
+            printf("Digite a quantidade de casas que deseja mover: \n");
+            scanf("%d", &casas);
+            printf("\n");
+            mover_torre(casas);
+            printf("\n");
             break;
 
         case 2:
@@ -75,11 +102,11 @@ int main() {
             printf("Você escolheu o Bispo! Acompanhe sua movimentação!\n");
             printf("\n");
 
-            while (bispo <= 5)
-            {
-                printf("Cima, Direita\n");
-		        bispo++;	
-	        }
+            printf("Digite a quantidade de casas que deseja mover: \n");
+            scanf("%d", &casas);
+            printf("\n");
+            mover_bispo(casas);
+            printf("\n");
             break;
        
         case 3:
@@ -87,11 +114,11 @@ int main() {
             printf("Você escolheu a Rainha! Acompanhe sua movimentação!\n");
             printf("\n");
 
-            do {
-		        printf("Esquerda\n");
-                rainha++;
-            } while (rainha <= 8);
-                
+            printf("Digite a quantidade de casas que deseja mover: \n");
+            scanf("%d", &casas);
+            printf("\n");
+            mover_rainha(casas);
+            printf("\n");
             break;
         
         case 4:
@@ -99,15 +126,21 @@ int main() {
             printf("Você escolheu o Cavalo! Acompanhe sua movimentação!\n");
             printf("\n");
 
-            while(cavalo--)
+            for (int vertical = 1; vertical <=2; vertical++)
             {
-                for(int i = 0; i< 2; i++) {
-                    printf("Baixo\n"); //Imprime Baixo duas vezes
+                printf("Cima\n");
+                
+                if (vertical == 1)
+                {
+                    continue;
                 }
 
-                printf("Esquerda\n"); //Imprime Esquerda uma vez
+                for (int horizontal = 1; horizontal <=1; horizontal++) 
+                {
+                    printf("Direita\n");
+                    break;
+                }
             }
-
             break;
 
         default:
@@ -115,6 +148,9 @@ int main() {
            printf("Opção inválida\n");
            break;
          }
+        
+    printf("\n");
+    printf("*** Partida encerrada! Até a próxima! ***\n");
     break;
     
     case 2:
@@ -126,9 +162,9 @@ int main() {
         printf("\n");
         printf("Bispo: Move-se na diagonal.\n");
         printf("\n");
-        printf("Cavalo: Move-se em L.\n");
-        printf("\n");
         printf("Rainha: Move-se em todas as direções.\n");
+        printf("\n");
+        printf("Cavalo: Move-se em L.\n");
     break;
 
     case 3:
@@ -142,6 +178,6 @@ int main() {
         printf("*** Partida encerrada! Até a próxima! ***\n");
     break;
     }
- 
+
     return 0;
 }
